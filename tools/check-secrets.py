@@ -64,7 +64,24 @@ SECRET_RULES = [
     ("JWT 凭据（eyJ 开头）", re.compile(r"\beyJ[A-Za-z0-9_\-]{20,}\.[A-Za-z0-9_\-]{10,}")),
     ("Bearer 长令牌", re.compile(r"Bearer\s+[A-Za-z0-9\-_\.]{32,}")),
     ("私钥块", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")),
+    ("Google OAuth Client ID", re.compile(r"\b\d{6,}-[a-z0-9]{20,}\.apps\.googleusercontent\.com")),
+    ("Google OAuth Client Secret", re.compile(r"\bGOCSPX-[A-Za-z0-9_\-]{20,}")),
 ]
+
+# ── 按「值」放行的公开凭据（不是按文件路径放行）────────────────
+# 这些是上游开源项目里写死的 OAuth 客户端凭据，属于 Google 公开发布的
+# 「已安装应用」客户端，不是本仓库作者的私有密钥，也不构成账号泄露
+# （仍需要使用者自己完成 OAuth 授权才能拿到 token）。GitHub 的 push
+# protection 会对它们告警，需在网页上逐条 unblock。
+# 注意：只允许放行**确认公开**的值；自己申请的 key 一律不许加进来。
+PUBLIC_BY_DESIGN = {
+    # Gemini CLI 官方公开 OAuth 客户端
+    "681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com",
+    "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",
+    # Antigravity 公开 OAuth 客户端
+    "1071006060591-tmhssin2h21lcre235vtolojh4g403ep.apps.googleusercontent.com",
+    "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",
+}
 
 # 32 位 hex：必须同一行出现上下文关键字，否则多是 OAuth client_id / fixture / uuid
 HEX32 = re.compile(r"\b[0-9a-f]{32}\b")
@@ -150,6 +167,7 @@ def main():
 
     allowlist = load_allowlist(root)
     findings = []
+    public_hits = set()
     checked = 0
     skipped = 0
 
@@ -172,6 +190,9 @@ def main():
             for name, rx in SECRET_RULES:
                 m = rx.search(line)
                 if m:
+                    if m.group(0) in PUBLIC_BY_DESIGN:
+                        public_hits.add((r, "%s: %s" % (name, mask(m.group(0)))))
+                        continue
                     findings.append(("SECRET", r, "L%d %s: %s" % (lineno, name, mask(m.group(0)))))
             if HEX32.search(line) and HEX32_CONTEXT.search(line):
                 findings.append(("SECRET", r, "L%d 32位hex+密钥上下文: %s"
@@ -207,6 +228,12 @@ def main():
                 print("   [%s] %s  %s" % (level, f, msg))
         else:
             print("✓ 内容未命中任何密钥 / 本机路径规则")
+        if public_hits:
+            print()
+            print("· 已知上游公开凭据（按设计公开，不计入失败，共 %d 处）:" % len(public_hits))
+            for r, msg in sorted(public_hits):
+                print("   - %s  %s" % (r, msg))
+            print("   提示：GitHub push protection 仍会对它们告警，需在网页上逐条 unblock。")
         print()
         if present:
             print("· 敏感文件物理存在（由 .gitignore 挡住，不会入库）:")
