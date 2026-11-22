@@ -1,0 +1,14 @@
+quart
+aiosqlite
+PyYaml
+revChatGPT
+tiktoken
+setuptools<81
+claude-api
+bardapi
+hugchat
+g4f==8.1.6
+revTongYi
+colorlog
+re_gpt==4.0.0
+requests

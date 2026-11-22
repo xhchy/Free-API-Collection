@@ -1,0 +1,107 @@
+{
+  "cloudflare": {
+    "account_id": "YOUR_CLOUDFLARE_ACCOUNT_ID",
+    "api_token": "YOUR_CLOUDFLARE_API_TOKEN",
+    "note": "cf-ai-shim 用；换成你自己 Cloudflare 面板里的 Account ID 与 Workers AI 令牌"
+  },
+  "routes": {
+    "zai": {
+      "upstream": "https://api.z.ai/api/paas/v4",
+      "key": "YOUR_ZAI_API_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "②Z.ai GLM（需注册）"
+    },
+    "llm7": {
+      "upstream": "https://api.llm7.io",
+      "key": "YOUR_LLM7_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑤LLM7（keyless 可留空）"
+    },
+    "poll": {
+      "upstream": "https://text.pollinations.ai",
+      "key": "YOUR_POLLINATIONS_TOKEN",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑥Pollinations（keyless 可留空）"
+    },
+    "zai2": {
+      "upstream": "https://api.z.ai/api/paas/v4",
+      "key": "REPLACE_ME_OR_DISABLE_CHANNEL",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "Z.ai 备用 key（不用就停用对应渠道）"
+    },
+    "g4f": {
+      "upstream": "http://127.0.0.1:3996",
+      "key": "g4f-local-2026",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "gpt4free 本机聚合，key 与 embedded/run-g4f.bat 里的 G4F_API_KEY 保持一致"
+    },
+    "gemini": {
+      "upstream": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "key": "YOUR_GOOGLE_AI_STUDIO_KEY",
+      "strip_prefix": "/v1",
+      "proxy": true,
+      "note": "⑨Gemini 官方免费层（key 来自 AI Studio，需能访问 Google）"
+    },
+    "foa": {
+      "upstream": "http://127.0.0.1:3995",
+      "key": "YOUR_FREE_ONE_API_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑩free-one-api 本机，key 见 embedded/free-one-api/data/config.yaml"
+    },
+    "agnes": {
+      "upstream": "https://apihub.agnes-ai.com",
+      "key": "YOUR_AGNES_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑪Agnes AI（零价体验档）"
+    },
+    "grok": {
+      "upstream": "http://127.0.0.1:3999",
+      "key": "YOUR_AICLIENT_LOCAL_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑫Grok Web，走本机 AIClient2API；账号 Cookie 在 configs/provider_pools.json"
+    },
+    "qwen": {
+      "upstream": "http://127.0.0.1:3999",
+      "key": "YOUR_AICLIENT_LOCAL_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑰Qwen 官方 OAuth（个人号 Device Flow）"
+    },
+    "cf": {
+      "upstream": "https://api.cloudflare.com/client/v4/accounts/YOUR_CLOUDFLARE_ACCOUNT_ID/ai",
+      "key": "YOUR_CLOUDFLARE_API_TOKEN",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑭Cloudflare Workers AI（把 URL 里的账号 ID 一起换掉）"
+    },
+    "vision": {
+      "upstream": "http://127.0.0.1:3998",
+      "key": "vault-only",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑮Cloudflare 视觉/语音本机中间层（shim 自己读 cloudflare 段）"
+    },
+    "ofm": {
+      "upstream": "http://127.0.0.1:18899",
+      "key": "YOUR_LOCAL_FREE_LANE_KEY",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "⑱本机免费车道（可选，没有就停用这些模型）"
+    },
+    "edge-tts": {
+      "upstream": "http://127.0.0.1:3993",
+      "key": "vault-only",
+      "strip_prefix": "",
+      "proxy": false,
+      "note": "Edge TTS 中文语音，免费无需 key"
+    }
+  }
+}

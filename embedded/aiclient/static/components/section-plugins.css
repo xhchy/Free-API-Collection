@@ -1,0 +1,671 @@
+/* Native dialog lives under body, outside the plugin section and its form styles. */
+.plugin-reauth-dialog {
+    width: min(560px, calc(100vw - 32px));
+    max-width: none;
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    box-shadow: 0 24px 80px var(--neutral-shadow-30), var(--shadow-xl);
+    font: inherit;
+    line-height: 1.5;
+    color-scheme: light;
+}
+
+.plugin-reauth-dialog--builtin {
+    width: min(480px, calc(100vw - 32px));
+}
+
+[data-theme="dark"] .plugin-reauth-dialog {
+    color-scheme: dark;
+}
+
+.plugin-reauth-dialog[open] {
+    animation: plugin-reauth-enter 160ms ease-out;
+}
+
+.plugin-reauth-dialog::backdrop {
+    background: var(--overlay-bg);
+    backdrop-filter: blur(5px);
+}
+
+.plugin-reauth-dialog svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.plugin-reauth-form {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 32px);
+    max-height: calc(100dvh - 32px);
+    min-width: 0;
+}
+
+.plugin-reauth-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    flex-shrink: 0;
+    padding: 24px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.plugin-reauth-emblem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--primary-20);
+    border-radius: 14px;
+    background: var(--primary-10);
+    color: var(--primary-color);
+}
+
+.plugin-reauth-heading {
+    flex: 1;
+    min-width: 0;
+}
+
+.plugin-reauth-title {
+    margin: 0 0 5px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
+.plugin-reauth-subtitle {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.plugin-reauth-close,
+.plugin-reauth-visibility {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 160ms, color 160ms;
+}
+
+.plugin-reauth-close {
+    width: 36px;
+    height: 36px;
+    margin: -4px -6px 0 0;
+}
+
+.plugin-reauth-close:hover,
+.plugin-reauth-visibility:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.plugin-reauth-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-height: 0;
+    padding: 24px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.plugin-reauth-warning {
+    padding: 14px 16px;
+    border: 1px solid var(--warning-border);
+    border-radius: 12px;
+    background: var(--warning-bg);
+    color: var(--warning-text);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.plugin-reauth-warning-title {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.plugin-reauth-warning p {
+    margin: 0;
+}
+
+.plugin-reauth-digest {
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+}
+
+.plugin-reauth-digest-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.plugin-reauth-digest code {
+    display: block;
+    color: var(--text-secondary);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    word-break: break-all;
+}
+
+.plugin-reauth-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 0;
+    padding: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.65;
+    cursor: pointer;
+}
+
+.plugin-reauth-consent .plugin-reauth-trust {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin: 2px 0 0;
+    padding: 0;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+}
+
+.plugin-reauth-consent:has(input:checked) {
+    border-color: var(--primary-color);
+    background: var(--primary-10);
+    color: var(--text-primary);
+}
+
+.plugin-reauth-field {
+    min-width: 0;
+}
+
+.plugin-reauth-label {
+    display: block;
+    margin: 0 0 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.plugin-reauth-password {
+    position: relative;
+}
+
+.plugin-reauth-input-icon {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    color: var(--text-tertiary);
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+/* Keep the same styled field when password visibility changes to type=text. */
+.plugin-reauth-password .plugin-reauth-input {
+    display: block;
+    width: 100%;
+    height: 48px;
+    margin: 0;
+    padding: 11px 48px 11px 44px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.plugin-reauth-password .plugin-reauth-input::placeholder {
+    color: var(--text-secondary);
+    opacity: 1;
+    font-size: 14px;
+}
+
+.plugin-reauth-password .plugin-reauth-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: var(--bg-primary);
+    box-shadow: 0 0 0 4px var(--primary-10);
+}
+
+.plugin-reauth-visibility {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 40px;
+    height: 40px;
+}
+
+.plugin-reauth-help {
+    margin: 9px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.plugin-reauth-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+    padding: 18px 24px;
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+}
+
+.plugin-reauth-footer .btn {
+    min-width: 104px;
+    min-height: 44px;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.plugin-reauth-footer .plugin-reauth-submit {
+    background: var(--primary-hover);
+    color: var(--bg-primary);
+}
+
+.plugin-reauth-submit svg {
+    width: 16px;
+    height: 16px;
+}
+
+.plugin-reauth-footer .plugin-reauth-submit:hover {
+    filter: brightness(0.94);
+}
+
+.plugin-reauth-dialog button:focus-visible,
+.plugin-reauth-trust:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+.plugin-reauth-input:user-invalid,
+.plugin-reauth-consent:has(input:user-invalid) {
+    border-color: var(--danger-color);
+}
+
+@keyframes plugin-reauth-enter {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 520px) {
+    .plugin-reauth-dialog {
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        border-radius: 16px;
+    }
+
+    .plugin-reauth-form {
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+    }
+
+    .plugin-reauth-header { padding: 20px; gap: 12px; }
+    .plugin-reauth-body { padding: 20px; gap: 16px; }
+    .plugin-reauth-close { width: 40px; height: 40px; }
+    .plugin-reauth-footer { padding: 16px 20px; flex-direction: column-reverse; gap: 10px; }
+    .plugin-reauth-footer .btn { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plugin-reauth-dialog[open] { animation: none; }
+}
+
+/* 标签页切换 */
+.tabs-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.tab-item {
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.tab-item:hover {
+    background: var(--bg-tertiary);
+    color: var(--primary-color);
+}
+
+.tab-item.active {
+    background: var(--primary-10);
+    color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.market-panel {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.market-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.market-list-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* 支付弹窗样式 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--overlay-bg);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.modal.show {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--bg-primary);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    width: 100%;
+    margin: 1.5rem;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-secondary);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-tertiary);
+    transition: var(--transition);
+}
+
+.modal-close:hover {
+    color: var(--danger-color);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.btn-install {
+    width: 100%;
+    margin-top: auto;
+}
+
+.installing-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(var(--bg-primary-rgb), 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    z-index: 10;
+    border-radius: 0.5rem;
+}
+
+/* 插件管理样式 */
+.plugins-panel {
+    background: var(--bg-primary);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.plugins-description {
+    margin-bottom: 2rem;
+}
+
+.plugins-stats {
+    margin-bottom: 2rem;
+}
+
+.plugins-controls {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+}
+
+.plugins-list-container {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.plugins-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.plugin-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.plugin-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
+}
+
+.plugin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.plugin-title h3 {
+    margin: 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.plugin-version {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+    padding: 0.125rem 0.5rem;
+    border-radius: 9999px;
+    margin-top: 0.25rem;
+    display: inline-block;
+}
+
+.plugin-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    flex: 1;
+    overflow-wrap: anywhere;
+}
+
+.plugin-description a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+.plugin-description a:hover {
+    text-decoration: underline;
+}
+
+.plugin-description a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+.plugin-description code {
+    padding: 0.1rem 0.35rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-size: 0.8rem;
+}
+
+.plugin-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.plugin-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.plugin-badge.middleware { background: var(--info-bg); color: var(--info-text); }
+.plugin-badge.routes { background: var(--success-bg); color: var(--success-text); }
+.plugin-badge.hooks { background: var(--warning-bg); color: var(--warning-text); }
+
+.plugin-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.plugin-card.enabled .plugin-status {
+    color: var(--success-color);
+}
+
+.plugin-card.disabled .plugin-status {
+    color: var(--text-secondary);
+}
+
+.plugin-card.disabled {
+    opacity: 0.8;
+    background: var(--bg-secondary);
+}
+
+.plugins-loading,
+.plugins-empty {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-secondary);
+}
+
+.plugins-empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.plugins-empty i {
+    font-size: 3rem;
+    opacity: 0.5;
+}
+
+/* 暗黑主题适配 */
+[data-theme="dark"] .plugins-list-container { background: var(--bg-secondary); }
+[data-theme="dark"] .plugin-card { background: var(--bg-primary); }
+[data-theme="dark"] .plugin-card.disabled { background: var(--bg-tertiary); }
+[data-theme="dark"] .plugin-badge.middleware { background: var(--info-bg); color: var(--info-text); }
+[data-theme="dark"] .plugin-badge.routes { background: var(--success-bg); color: var(--success-text); }
+[data-theme="dark"] .plugin-badge.hooks { background: var(--warning-bg); color: var(--warning-text); }

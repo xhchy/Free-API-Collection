@@ -1,0 +1,82 @@
+# ════════════════════════════════════════════════════════════
+#  new-api-new —— 对外发布的免费 API 合集
+#  本文件是「脱敏最后一道闸」：真实凭据 / 本机数据一律不入库。
+#  推送前请先跑：  python tools/check-secrets.py
+# ════════════════════════════════════════════════════════════
+
+# ── 1. 真实密钥（vault 只留模板）────────────────────────────
+vault/keys.json
+vault/keys.json.*
+vault/*.tmp.*
+!vault/keys.example.json
+
+# ── 2. NewAPI 本地数据库（含全部渠道真 key 与用户令牌）───────
+one-api.db
+one-api.db-shm
+one-api.db-wal
+*.db
+*.db-shm
+*.db-wal
+p.tmp.json
+
+# ── 3. 运行日志（含账号 ID、请求明细）──────────────────────
+logs/
+*.log
+
+# ── 4. 上游账号凭据 / 管理密码（AIClient2API）───────────────
+embedded/aiclient/configs/provider_pools.json
+embedded/aiclient/configs/token-store.json
+embedded/aiclient/configs/config.json
+embedded/aiclient/configs/pwd
+embedded/aiclient/configs/api-potluck-keys.json
+embedded/free-one-api/data/
+embedded/g4f/cookies/
+embedded/g4f/har_and_cookies/
+
+# ── 5. 各组件运行时产物 ─────────────────────────────────────
+embedded/*/data/
+embedded/*/logs/
+embedded/*/prompt_log*
+embedded/*/*.session
+
+# ── 6. Python / Node 依赖与缓存 ─────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+node_modules/
+venv/
+venv-*/
+.venv/
+.pytest_cache/
+
+# ── 7. 备份与临时文件（今天的 .bak 里就带着真 key）───────────
+*.bak
+*.bak-*
+*.orig
+*.tmp
+*.temp
+*.swp
+*~
+
+# ── 8. 打包产物 / 大文件 ────────────────────────────────────
+# NewAPI 本体是 138MB 的第三方二进制，超过 GitHub 单文件 100MB 硬上限 ⇒ 不入库。
+# 分发方式：README 只给上游下载地址，由使用者自行取得。
+# 注意：不要把它挂到本项目的 Releases —— 分发二进制会触发 AGPL-3.0 第 6 条
+#       随附对应源码的义务。
+*.exe
+*.zip
+*.7z
+*.tar.gz
+*.mp3
+*.mp4
+
+# ── 9. 被改名冻结的上游仓库（aiclient 自带的 .git，留着本地可回溯）──
+.git-upstream/
+embedded/aiclient/.git-upstream/
+
+# ── 10. 内部文档（本机部署细节 / 个人调研记录，一律不对外）──────
+#  README-自包含部署.md  写的是本机 ACL、7891 迁移、真实账户名
+#  反代候选清单-*.md     写的是逐条试错过程与账号片段
+README-自包含部署.md
+反代候选清单-*.md
+

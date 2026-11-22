@@ -1,0 +1,28 @@
+dist
+__pycache__
+generated_media
+site-packages
+node_modules
+g4f.egg-info
+models
+pyvenv.cfg
+lib64
+/.idea
+container/
+g4f.exe
+har_and_cookies
+playground
+.vscode
+.gradle
+windows
+build
+assets
+# Polli's Go embeds need these snapshots in clean checkouts and Docker builds.
+!/g4f-go/polli/assets/
+g4f.dev
+# Automatic development pipeline runtime
+.dev-pipeline/
+.pi/
+# Android signing keys must never be committed
+*.jks
+*.keystore

@@ -1,0 +1,75 @@
+Free API Stack
+Copyright (C) 2026 XHTV
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published
+by the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+The full license text is in the file LICENSE at the root of this repository.
+
+--------------------------------------------------------------------------------
+中文说明（以下为对上述许可的补充声明，不改变许可证条款）
+--------------------------------------------------------------------------------
+
+一、为什么整体是 AGPL-3.0
+
+本仓库把多个开源项目组合在一起分发，其中包含 AGPL-3.0 与 GPL-3.0 代码。
+这两种许可证具有传染性，且兼容方向是单向的（宽松可以并入严格，严格不能退回宽松），
+因此整个仓库只能按其中最严格的一个发布 —— 即 GNU AGPL-3.0。
+
+二、本仓库内嵌的第三方项目（各自保留原始许可证）
+
+  目录                        项目                     许可证
+  --------------------------  -----------------------  ------------------------------
+  new-api-v1.0.0-rc.51.exe    NewAPI                   AGPL-3.0（不以二进制随附，见第四节）
+  embedded/free-one-api/      free-one-api             AGPL-3.0（网络服务条款适用）
+  embedded/g4f/               gpt4free                 GPL-3.0
+  embedded/aiclient/          AIClient2API             GPL-3.0
+
+上述项目的版权归各自作者所有，本仓库不对其主张任何权利。各目录下的 LICENSE 文件为原文，
+请一并保留。AGPL-3.0 第 13 条（远程网络交互）对本项目同样适用：如果你修改本程序并以
+网络服务形式向他人提供，必须向这些用户提供对应源码。
+
+三、本项目自研部分
+
+以下内容由本项目作者编写，同样以 AGPL-3.0 或更新版本发布（源码文件头带 SPDX 标识）：
+
+  vault/vault.py                              凭证保管与转发层
+  embedded/shim/cf-ai-shim.py                 Cloudflare Workers AI 适配层
+  embedded/foa-bridge/pollinations-bridge.py  free-one-api 的 /health 补齐层
+  embedded/edge-tts/edge-tts-shim.py          Edge TTS 封装
+  tools/check-secrets.py                      发布前泄露自检
+  start-all.bat, embedded/env.bat, embedded/run-*.bat   启动脚本
+
+四、NewAPI 本体的分发方式
+
+NewAPI 本体是一个约 138MB 的第三方程序，本仓库既不附带其源码，也不附带其二进制，
+只提供上游下载地址。这样做同时满足两点：
+  * 遵守 GitHub 单文件 100MB 的体积上限；
+  * 避免由本项目「分发二进制」，从而不触发 AGPL-3.0 第 6 条随附对应源码的义务。
+需要时请自行从 NewAPI 上游仓库下载，并遵守其许可证。
+
+五、对上游文件的修改声明（AGPL-3.0 第 5 条 / GPL-3.0 第 5 条）
+
+embedded/aiclient/ 相对其上游版本存在修改。源码文件已在该文件顶部加注释声明，
+JSON 文件无法写注释，故在此处声明：
+
+  src/providers/adapter.js          修改于 2026-11-21   （文件头已注释声明）
+  src/providers/grok/grok-core.js   修改于 2026-11-21   （文件头已注释声明）
+  src/services/api-manager.js       修改于 2026-11-21   （文件头已注释声明）
+  qwen-login.mjs                    新增于 2026-11-21   （文件头已注释声明）
+  package.json                      修改于 2026-11-20   （在此声明）
+  package-lock.json                 修改于 2026-11-20   （在此声明，随 package.json 联动）
+
+embedded/free-one-api/ 与 embedded/g4f/ 未做源码修改，仅按各自文档进行配置。
+
+如需获取上述被修改文件的原始版本，请前往对应项目的上游仓库。

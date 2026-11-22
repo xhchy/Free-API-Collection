@@ -1,0 +1,41 @@
+# 统一换行策略
+# ------------------------------------------------------------------
+# 为什么需要这个文件：Windows 的 core.autocrlf 默认会把 CRLF 转成 LF
+# 之后再存进仓库，于是从 GitHub 下载 zip 得到的 .bat 是 LF 换行。
+# 而 cmd.exe 解析 LF 换行的批处理并不可靠（标签、括号块、goto 都可能出错），
+# 所以这里显式规定批处理文件在仓库里也必须保持 CRLF。
+
+* text=auto
+
+# Windows 批处理 / 命令脚本：仓库内保持 CRLF
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# Shell 脚本：保持 LF
+*.sh    text eol=lf
+
+# 明确按二进制处理，禁止任何换行转换
+*.exe   binary
+*.dll   binary
+*.so    binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary
+*.zip   binary
+*.7z    binary
+*.db    binary
+*.pyc   binary
+
+# 文本类缺省按 LF
+*.md    text eol=lf
+*.py    text eol=lf
+*.js    text eol=lf
+*.mjs   text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
