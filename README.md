@@ -50,6 +50,10 @@ Grok Web、Agnes、Edge TTS……）聚合成**一个 OpenAI 兼容入口**：�
 ## 快速开始（Windows）
 
 ```bat
+REM 0) 取代码（没装 git 就在仓库页点 Code -> Download ZIP）
+git clone https://github.com/xhchy/Free-API-Collection.git
+cd Free-API-Collection
+
 REM 1) 前置：Python 3.10+、Node 18+
 
 REM 2) 取得 NewAPI 本体（不入库，约 138MB，超过 GitHub 单文件上限）
