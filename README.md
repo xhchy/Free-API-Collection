@@ -12,7 +12,6 @@ Grok Web、Agnes、Edge TTS……）聚合成**一个 OpenAI 兼容入口**：�
 > **适用**：个人折腾、学习、给自己的一堆工具提供统一出口。
 > **不适用**：生产依赖。这些免费额度随时可能限流、改协议或关停，单渠道失效属于常态。
 > 使用前请自行阅读各上游的服务条款 —— 账号风险由使用者承担。
-
 ---
 
 ## 架构
@@ -177,6 +176,59 @@ new-api-new/
 `vault/`、`embedded/shim/`、`embedded/foa-bridge/`、`embedded/edge-tts/`、`tools/`、
 以及各 `*.bat` 启动脚本为本项目自研部分。
 
+## 感谢
+
+ 本项目需感谢我们团队的默默奉献，为此在这里我们将列出为Free-API-Collection做出贡献的人/AI：
+ 
+ xhchy/xhtv/szchy/WorkBuddy/deepseek-harness
+ 
+ ## 提供API
+ 本项目的API目前均由项目主理人：xhchy注册，如果您希望添加API，我们也十分支持您！
+ 
+ **注意**：当我们拿到API后，我们无法保证您的API被封禁账号以及额度消耗完，我们团队正在尽力添加控制API消耗的能力，请您谅解。
+ 
+ 提供API请通过以下方式联系我们：
+ 
+ facebook:Xhtv Chen
+ 
+ Proton Mail:cnxhtv@proton.me
+ 
+ Outlook:xh2026new@outlook.com/xhtv2026@hotmail
+ 
+ Gmail:xh2026new@gmail.com
+ 
+ QQ邮箱:xh2026new@qq.com
+ 
+ X:？？？被踢了
+ 
+ 微信：amzrain
+ 
+ 微博：小红TV
+ 
+ YouTube：XHTV-minecraft
+ 
+## BUG/问题
+
+请通过以下方式跟我们沟通：
+
+ facebook:Xhtv Chen
+ 
+ Proton Mail:cnxhtv@proton.me
+ 
+ Outlook:xh2026new@outlook.com/xhtv2026@hotmail
+ 
+ Gmail:xh2026new@gmail.com
+
+ QQ邮箱:xh2026new@qq.com
+ 
+ X:？？？被踢了
+ 
+ 微信：amzrain
+ 
+ 微博：小红TV
+ 
+ YouTube：XHTV-minecraft
+ 
 ## 许可证
 
 本项目整体以 **GNU Affero General Public License v3.0** 发布，全文见 [`LICENSE`](LICENSE)，
