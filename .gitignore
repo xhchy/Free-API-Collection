@@ -34,6 +34,11 @@ embedded/g4f/cookies/
 embedded/g4f/har_and_cookies/
 
 # ── 5. 各组件运行时产物 ─────────────────────────────────────
+#  根 data/ 是 NewAPI 本体自己写的运行时目录，其中 session_secret.txt
+#  是它首次启动时随机生成的会话签名密钥。这个文件绝不能入库：
+#  一旦入库，所有 clone 本项目的人会共用同一个 secret，等于把后台
+#  会话签名公开。删除后 NewAPI 会在下次启动时重新生成一份独立的。
+/data/
 embedded/*/data/
 embedded/*/logs/
 embedded/*/prompt_log*
